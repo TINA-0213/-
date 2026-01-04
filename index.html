@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <!-- 手机适配核心标签 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>我的碎碎念</title>
+  <!-- 引入Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 引入统一样式 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 整体淡粉色背景，居中布局 -->
+  <div class="main-container">
+    <!-- 页面标题 -->
+    <h1 class="page-title">我的碎碎念</h1>
+
+    <!-- 中间大按钮：今日记录（跳转至填写页面） -->
+    <a href="record.html" class="today-record-btn">今日记录</a>
+
+    <!-- 日历容器：左右按钮+年月显示+单个月份日历 -->
+    <div class="calendar-container">
+      <h3 class="calendar-main-title">我的记录日历</h3>
+      <!-- 日历控制栏（左按钮+中间年月（可点击弹窗）+右按钮） -->
+      <div class="calendar-control-bar">
+        <button id="prevBtn" class="calendar-toggle-btn left-btn">◀</button>
+        <span id="currentYearMonth" class="current-year-month" style="cursor: pointer;">2026年1月</span>
+        <button id="nextBtn" class="calendar-toggle-btn right-btn">▶</button>
+      </div>
+      <!-- 单个月份日历容器（动态更新） -->
+      <div class="single-month-calendar">
+        <!-- 星期头部 -->
+        <div class="month-week">
+          <div class="month-week-item">日</div>
+          <div class="month-week-item">一</div>
+          <div class="month-week-item">二</div>
+          <div class="month-week-item">三</div>
+          <div class="month-week-item">四</div>
+          <div class="month-week-item">五</div>
+          <div class="month-week-item">六</div>
+        </div>
+        <!-- 日期格子容器（动态生成） -->
+        <div id="monthDays" class="month-days"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 年月选择弹窗（默认隐藏） -->
+  <div id="dateSelectMask" class="date-select-mask"></div>
+  <div id="dateSelectModal" class="date-select-modal">
+    <h4 class="modal-title">选择年月</h4>
+    <div class="modal-select-group">
+      <label for="yearSelect" class="select-label">年份</label>
+      <select id="yearSelect" class="form-control modal-select"></select>
+    </div>
+    <div class="modal-select-group">
+      <label for="monthSelect" class="select-label">月份</label>
+      <select id="monthSelect" class="form-control modal-select"></select>
+    </div>
+    <div class="modal-btn-group">
+      <button id="cancelModal" class="btn green-btn modal-btn">取消</button>
+      <button id="confirmModal" class="btn green-btn modal-btn">确认</button>
+    </div>
+  </div>
+
+  <!-- 引入Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 引入功能逻辑JS -->
+  <script src="app.js"></script>
+</body>
+</html>
