@@ -1,0 +1,500 @@
+/* 全局样式：所有页面共用淡粉色背景 */
+body {
+  background-color: #fef5f8; /* 柔和淡粉色，统一所有页面背景 */
+  margin: 0;
+  padding: 20px 0;
+  font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative; /* 为弹窗遮罩层提供定位参考 */
+}
+
+/* ------------------- 首页样式（无修改） ------------------- */
+/* 首页主容器 */
+.main-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* 首页标题 */
+.page-title {
+  color: #d68fa5;
+  margin-bottom: 40px;
+  font-weight: bold;
+  padding-top: 120px;
+}
+
+/* 首页中间大按钮：今日记录 */
+.today-record-btn {
+  display: inline-block;
+  width: 200px;
+  height: 80px;
+  line-height: 80px;
+  background-color: #f8d7da; /* 浅粉系按钮 */
+  color: #a74a5f;
+  border: none;
+  border-radius: 40px; /* 圆角按钮 */
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none; /* 去除a标签下划线 */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(214, 143, 165, 0.2);
+  transition: all 0.3s ease;
+  margin-bottom: 35px;
+}
+
+/* 今日记录按钮 hover 效果 */
+.today-record-btn:hover {
+  background-color: #f5c6cb;
+  color: #a74a5f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(214, 143, 165, 0.3);
+  text-decoration: none;
+}
+
+/* 日历容器 */
+.calendar-container {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #fef9fb; /* 浅粉背景，贴合整体风格 */
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(214, 143, 165, 0.1);
+}
+
+/* 日历主标题 */
+.calendar-main-title {
+  color: #d68fa5;
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 日历控制栏（左按钮+中间年月+右按钮，两端对齐布局） */
+.calendar-control-bar {
+  display: flex;
+  justify-content: space-between; /* 左右按钮两端分布，中间年月居中 */
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+/* 日历左右切换按钮样式（通用） */
+.calendar-toggle-btn {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: #d4edda; /* 淡绿色，与标亮颜色统一 */
+  color: #6a994e;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* 切换按钮hover效果 */
+.calendar-toggle-btn:hover {
+  background-color: #c3e6cb;
+  color: #5a863e;
+  transform: scale(1.05);
+}
+
+/* 当前年月显示样式（可点击，添加手型光标） */
+.current-year-month {
+  color: #6a994e;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+/* 年月文本hover效果 */
+.current-year-month:hover {
+  color: #5a863e;
+  transform: scale(1.05);
+}
+
+/* 单个月份日历样式 */
+.single-month-calendar {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(214, 143, 165, 0.1);
+}
+
+/* 星期头部容器 */
+.month-week {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* 星期项样式 */
+.month-week-item {
+  width: calc(100% / 7);
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 日期格子容器 */
+.month-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+/* 日期项基础样式 */
+.month-day-item {
+  width: calc(100% / 7 - 3px);
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+/* 有记录的日期：淡绿色标亮 */
+.month-day-item.has-record {
+  background-color: #d4edda;
+  color: #6a994e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 有记录日期hover效果 */
+.month-day-item.has-record:hover {
+  background-color: #c3e6cb;
+  color: #5a863e;
+  transform: scale(1.05);
+}
+
+/* 今日日期样式（仅当前年月匹配时显示） */
+.month-day-item.today {
+  border: 2px solid #d68fa5;
+  font-weight: bold;
+}
+
+/* 年月选择弹窗遮罩层（半透明背景，默认隐藏） */
+.date-select-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* 半透明黑色遮罩 */
+  z-index: 999;
+  display: none; /* 默认隐藏 */
+}
+
+/* 年月选择弹窗（居中显示，默认隐藏） */
+.date-select-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fef9fb;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(214, 143, 165, 0.2);
+  z-index: 1000;
+  display: none; /* 默认隐藏 */
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* 弹窗标题 */
+.modal-title {
+  color: #d68fa5;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* 弹窗选择组容器 */
+.modal-select-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* 选择框标签 */
+.select-label {
+  color: #6a994e;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* 弹窗下拉选择框样式 */
+.modal-select {
+  border-radius: 8px !important;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #d4edda !important;
+}
+
+/* 弹窗按钮组 */
+.modal-btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* 弹窗按钮样式 */
+.modal-btn {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+/* ------------------- 填写页面样式（无修改） ------------------- */
+/* 填写页面主容器 */
+.record-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* 填写页面标题 */
+.record-title {
+  color: #d68fa5;
+  margin-bottom: 30px;
+  font-weight: bold;
+  padding-top: 180px;
+}
+
+/* 填写页面表单容器（无白色背景，继承淡粉色） */
+.record-form {
+  width: 100%;
+  text-align: left;
+  padding: 30px;
+  border-radius: 16px;
+  
+}
+
+/* ------------------- 展示页面样式（微调删除键点击样式） ------------------- */
+/* 展示页面主容器 */
+.detail-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* 展示页面标题 */
+.detail-title {
+  color: #d68fa5;
+  margin-bottom: 20px;
+  font-weight: bold;
+  padding-top:40px;
+}
+
+/* 完整记录列表容器（仅承载分组，无其他样式） */
+.full-diary-list {
+  width: 100%;
+  text-align: left;
+}
+
+/* 日期分组容器（核心：承载左侧竖线+日期标题+同日期记录） */
+.date-group {
+  position: relative; /* 为左侧竖线（绝对定位）提供参考 */
+  margin-bottom: 30px; /* 不同日期分组之间的间距 */
+  padding-left: 25px; /* 给左侧竖线+节点留出空间 */
+}
+
+/* 左侧竖线样式（贯穿同一天所有记录，作为节点的连接线） */
+.date-group::before {
+  content: '';
+  position: absolute;
+  left: 8px; /* 竖线水平位置，与记录节点、日期圆点居中对齐 */
+  top: 0;
+  bottom: 0;
+  width: 2px; /* 竖线宽度 */
+  background-color: #d4edda; /* 淡绿色，与按钮/标亮颜色统一 */
+  border-radius: 1px; /* 竖线圆角，更柔和 */
+  z-index: 0; /* 低于节点和日期圆点，避免遮挡 */
+}
+
+/* 日期标题样式（显示YYYY-MM-DD，位于竖线左侧） */
+.date-group-title {
+  position: relative;
+  color: #6a994e; /* 淡绿色文字，与竖线颜色统一 */
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-left: 0;
+}
+
+/* 日期标题左侧圆点（与竖线连接，增强视觉效果） */
+.date-group-title::before {
+  content: '';
+  position: absolute;
+  left: -17px; /* 圆点水平位置，与竖线、记录节点对齐 */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px; /* 圆点大小（比记录节点大，突出日期） */
+  height: 16px;
+  background-color: #d4edda; /* 淡绿色，与竖线颜色统一 */
+  border: 2px solid #fef5f8; /* 淡粉色边框，与页面背景一致 */
+  border-radius: 50%; /* 圆形 */
+  z-index: 2; /* 高于竖线，避免被遮挡 */
+}
+
+/* 记录卡片样式（核心重构：外层容器，固定删除键） */
+.diary-card {
+  background-color: #fef9fb; /* 浅粉卡片，保留层次感 */
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(214, 143, 165, 0.1);
+  margin-bottom: 15px; /* 同日期内记录之间的间距 */
+  position: relative; /* 为删除提示提供定位参考 */
+  z-index: 1; /* 确保卡片在竖线上方 */
+  overflow: hidden; /* 核心：隐藏超出卡片可视区域的内容 */
+  height: auto;
+}
+
+/* 卡片内容容器（核心：仅内容左移，暴露删除键） */
+.diary-card-content {
+  padding: 20px;
+  transform: translateX(0); /* 初始偏移量为0 */
+  transition: transform 0.3s ease; /* 滑动过渡，更流畅 */
+  position: relative;
+  z-index: 2;
+  background-color: #fef9fb; /* 与卡片背景一致，遮挡删除键 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 左滑删除提示容器（核心：固定在卡片右侧，默认隐藏，添加点击光标） */
+.diary-delete-tip {
+  position: absolute;
+  top: 0;
+  right: 0; /* 固定在卡片右侧，被内容容器遮挡 */
+  width: 80px; /* 固定宽度 */
+  height: 100%;
+  background-color: #dc3545; /* 红色背景，醒目提示 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1; /* 低于内容容器，高于卡片背景 */
+  cursor: pointer; /* 鼠标指针变为手型，提示可点击 */
+}
+
+/* 每个记录左侧的独立节点样式 */
+.diary-card::before {
+  content: '';
+  position: absolute;
+  left: -17px; /* 节点水平位置，与日期圆点、竖线对齐 */
+  top: 20px; /* 节点垂直位置，靠近卡片顶部，视觉更美观 */
+  width: 10px; /* 节点大小（比日期圆点小，区分日期和记录） */
+  height: 10px;
+  background-color: #d4edda; /* 淡绿色，与竖线、日期圆点颜色统一 */
+  border: 2px solid #fef5f8; /* 淡粉色边框，增强层次感 */
+  border-radius: 50%; /* 圆形节点 */
+  z-index: 3; /* 高于所有内容，确保节点可见 */
+  transition: all 0.2s ease; /* hover效果 */
+}
+
+/* 记录卡片hover时，节点放大变色，增强交互 */
+.diary-card:hover::before {
+  background-color: #c3e6cb;
+  transform: scale(1.2);
+}
+
+/* 记录卡片内的时间（显示具体时分秒，增强辨识度） */
+.diary-card .card-time {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* 记录卡片内的感悟内容（核心，保留并优化） */
+.diary-card .card-content {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  white-space: pre-wrap; /* 保留输入时的换行符 */
+}
+
+/* 记录卡片内的照片 */
+.diary-card .card-photo {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #f1f3f5;
+}
+
+/* ------------------- 通用样式（无修改） ------------------- */
+/* 上传照片按钮 */
+.upload-btn {
+  background-color: #e2eafc;
+  color: #4a6fa5;
+  border: none;
+  border-radius: 8px;
+}
+
+.upload-btn:hover {
+  background-color: #d0e0fc;
+  color: #4a6fa5;
+}
+
+/* 照片预览 */
+.photo-preview {
+  width: 100%;
+  display: none; /* 默认隐藏 */
+  border-radius: 8px;
+  border: 1px solid #f1f3f5;
+  margin-top: 10px;
+}
+
+/* 核心：淡绿色按钮（所有页面的按钮共用） */
+.green-btn {
+  background-color: #d4edda; /* 柔和淡绿色 */
+  color: #6a994e; /* 深绿文字，更清晰 */
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+}
+
+/* 淡绿色按钮 hover 效果 */
+.green-btn:hover {
+  background-color: #c3e6cb; /* 略深淡绿色，提升交互感 */
+  color: #5a863e;
+  text-decoration: none;
+}
+
+/* 调整输入框与“写下今日感悟”的垂直距离（核心：margin-top） */
+.form-control {
+  border-radius: 10px !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  border: 1px solid #dee2e6;
+  margin-bottom: 25px; /* 原有样式，保留不变 */
+  margin-top: -55px; /* 关键属性：控制与上方文字的垂直间距 */
+  /* 数值调整：
+     - 想拉大间距：改为18px/24px等
+     - 想缩小间距：改为6px/3px等
+     - 想取消间距：改为0px
+  */
+}
